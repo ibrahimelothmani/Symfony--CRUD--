@@ -40,24 +40,35 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_test_add',{'a':'10','b':'20'})}}">calc(addition)</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_produit_index')}}">Gestion des produits</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_categories_index')}}">Gestion des Categories</a>
-						</li>
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_produit_index') }}">Gestion des produits</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_categories_index') }}">Gestion des Catégories</a>
+							</li>
+						{% endif %}
 					</ul>
-					<ul class="navbar-nav ms-auto">
-						<li class="nav-item">
-							<a class="nav-link text-primary border border-2 rounded-3" href="{{path('app_login')}}">LogIn</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-danger border border-2 rounded-3 ms-2" href="{{path('app_logout')}}">Logout</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white border border-2 rounded-3 ms-2" href="{{path('app_register')}}">Registration</a>
-						</li>
-					</ul>
+
+					{% if not app.user %}
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link text-bg-primary border border-2 rounded-3" href="{{ path('app_login') }}">LogIn</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-bg-warnig border border-2 rounded-3 ms-2" href="{{ path('app_register') }}">Registration</a>
+							</li>
+
+						</ul>
+					{% else %}
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link text-danger border border-2 rounded-3 ms-2" href="{{ path('app_logout') }}">Logout</a>
+							</li>
+						</ul>
+					{% endif %}
+
+
 				</div>
 			</div>
 		</nav>

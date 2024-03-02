@@ -24,6 +24,7 @@ class TestController extends AbstractController
         if (!$this->authorizationChecker->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
         }
+        // isGranted est une méthode fournie par Symfony pour vérifier si un utilisateur a ou non accès à une certaine ressource ou fonctionnalité dans une application Symfony
 
         $result = $a + $b;
         return $this->render('test/index.html.twig', [

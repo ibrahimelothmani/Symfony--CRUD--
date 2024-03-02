@@ -1,22 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
 {% block body %}
-    <h1>Register</h1>
+	<div class="container mt-5">
+		<div class="row mt-5">
+			<div class="text-center">
+				<h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {{ form_row(registrationForm.dateOfBirth) }}
-        {{ form_row(registrationForm.plainPassword, {
+				{{ form_errors(registrationForm) }}
+
+
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.roles) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.firstName) }}
+				{{ form_row(registrationForm.lastName) }}
+				{{ form_row(registrationForm.dateOfBirth) }}
+				{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+
+				{{ form_row(registrationForm.agreeTerms) }}
+
+				<button type="submit" class="btn btn-lg btn-warning mt-3">Register</button>
+				{{ form_end(registrationForm) }}
+				<a href="{{path('app_login')}}" class="btn btn-lg btn-primary mt-3" type="submit">
+					Login Page
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+
 {% endblock %}
